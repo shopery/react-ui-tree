@@ -101,10 +101,12 @@ module.exports = React.createClass({
     this._offsetX = e.clientX;
     this._offsetY = e.clientY;
     this._start = true;
+    this._startId = id;
 
     window.addEventListener('mousemove', this.drag);
     window.addEventListener('mouseup', this.dragEnd);
   },
+
 
   // oh
   drag: function drag(e) {
@@ -204,7 +206,11 @@ module.exports = React.createClass({
       }
     });
 
-    this.change(this.state.tree);
+    if (id !== this._startId) {
+      this.change(this.state.tree);
+      this._startId = null;
+    }
+
     window.removeEventListener('mousemove', this.drag);
     window.removeEventListener('mouseup', this.dragEnd);
   },
