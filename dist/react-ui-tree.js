@@ -196,6 +196,8 @@ module.exports = React.createClass({
     });
   },
   dragEnd: function dragEnd() {
+    var id = this.state.dragging.id;
+
     this.setState({
       dragging: {
         id: null,
